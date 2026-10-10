@@ -46,3 +46,13 @@ export function createSlug(text: string): string {
         .replace(/\s+/g, "-")
         .replace(/[^\w\u0980-\u09FF-]/g, "");
 }
+
+export function translateUnit(unit: string): string {
+    const map: Record<string, string> = {
+        kg: "কেজি",
+        litre: "লিটার",
+        dozen: "ডজন",
+        piece: "পিস",
+    };
+    return map[unit] || unit;
+}

@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
+import Footer from "@/components/Footer";
 
 const hindSiliguri = Hind_Siliguri({
     weight: ["300", "400", "500", "600", "700"],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: Readonly<{children: React.React
                 <Navbar />
                 <PriceTicker />
                 <main className="flex-1">{children}</main>
+                <Footer />
                 <Toaster
                     position="top-center"
                     toastOptions={{
