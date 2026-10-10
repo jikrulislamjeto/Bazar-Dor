@@ -1,4 +1,9 @@
-export function toBengaliNumber(num: number | string): string {
+export function toBengaliNumber(
+    num: number | string | undefined | null,
+): string {
+    if (num === undefined || num === null || isNaN(Number(num))) {
+        return "০";
+    }
     const bengaliDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
     return num.toString().replace(/\d/g, (d) => bengaliDigits[parseInt(d)]);
 }
@@ -8,7 +13,10 @@ export function formatPrice(price: number): string {
     return toBengaliNumber(formatted);
 }
 
-export function formatPercent(percent: number): string {
+export function formatPercent(percent: number | undefined | null): string {
+    if (percent === undefined || percent === null || isNaN(Number(percent))) {
+        return "০.০";
+    }
     const abs = Math.abs(percent).toFixed(1);
     return toBengaliNumber(abs);
 }

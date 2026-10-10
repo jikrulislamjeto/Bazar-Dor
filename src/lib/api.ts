@@ -2,35 +2,40 @@ const BASE_URL =
     process.env.NEXT_PUBLIC_API_BASE_URL ||
     "https://api.api-store.workers.dev/api/bazardor";
 
+export interface Market {
+    market: string;
+    division: string;
+    min: number;
+    max: number;
+}
 
-export interface MarketPrice {
-    marketName: string;
-    district: string;
-    minPrice: number;
-    maxPrice: number;
-    avgPrice: number;
+export interface Change {
+    dir: "up" | "down" | "flat";
+    pct: number;
 }
 
 export interface Product {
-    _id: string;
-    id?: string;
-    name: string;
-    nameBn?: string;
-    emoji: string;
+    id: number;
+    slug: string;
+    nameBn: string;
     category: string;
+    categoryNameBn: string;
+    categoryIcon: string;
     unit: string;
-    todayPrice: number;
-    changePercent: number;
-    changeType: "up" | "down" | "flat";
-    markets?: MarketPrice[];
+    image: string;
+    today: number;
+    yesterday: number;
+    lastWeek: number;
+    lastMonth: number;
+    change: Change;
+    markets: Market[];
 }
 
 export interface Category {
-    _id: string;
-    name: string;
-    nameBn?: string;
-    icon: string;
+    id: string;
     slug: string;
+    nameBn: string;
+    icon: string;
 }
 
 
@@ -39,9 +44,7 @@ async function fetcher<T>(endpoint: string): Promise<T> {
         next: { revalidate: 3600 },
     });
 
-    if (!res.ok) {
-        throw new Error(`API error: ${res.status} on ${endpoint}`);
-    }
+   if (!res.ok) throw new Error(`API error: ${res.status} on ${endpoint}`);
 
     return res.json();
 }
