@@ -13,11 +13,11 @@ import {
 
 export const dynamic = "force-dynamic";
 
-export default async function ProductDetailPage({
+const ProductDetailPage = async ({
     params,
 }: {
     params: Promise<{ id: string }>;
-}) {
+}) => {
     // Auth check
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session) redirect("/signin?redirected=true");
@@ -234,4 +234,6 @@ export default async function ProductDetailPage({
             </div>
         </div>
     );
-}
+};
+
+export default ProductDetailPage;

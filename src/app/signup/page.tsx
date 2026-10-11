@@ -7,7 +7,7 @@ import { signUp, signIn } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { User, Mail, Lock, Loader2, Eye, EyeOff, ShoppingCart, ArrowLeft } from "lucide-react";
 
-export default function SignUpPage() {
+const SignUpPage = () => {
     const router = useRouter();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -296,4 +296,6 @@ export default function SignUpPage() {
             </div>
         </div>
     );
-}
+};
+
+export default SignUpPage;
