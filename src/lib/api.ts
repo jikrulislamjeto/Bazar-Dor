@@ -1,5 +1,6 @@
 const BASE_URL =
     process.env.NEXT_PUBLIC_API_BASE_URL ||
+    "https://openapi.programming-hero.com/api/bazardor" ||
     "https://api.api-store.workers.dev/api/bazardor";
 
     const ALT_BASE_URL = "https://api.abcz.workers.dev/api/bazardor";

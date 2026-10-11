@@ -20,41 +20,12 @@ const categories = [
 ];
 
 const getBengaliDate = (): string => {
-    const now = new Date();
-    const days = [
-        "রবিবার",
-        "সোমবার",
-        "মঙ্গলবার",
-        "বুধবার",
-        "বৃহস্পতিবার",
-        "শুক্রবার",
-        "শনিবার",
-    ];
-    const months = [
-        "জানুয়ারি",
-        "ফেব্রুয়ারি",
-        "মার্চ",
-        "এপ্রিল",
-        "মে",
-        "জুন",
-        "জুলাই",
-        "আগস্ট",
-        "সেপ্টেম্বর",
-        "অক্টোবর",
-        "নভেম্বর",
-        "ডিসেম্বর",
-    ];
-    const bengaliDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-    const toBn = (n: number) =>
-        n.toString().replace(/\d/g, (d) => bengaliDigits[parseInt(d)]);
-
-    const day = days[now.getDay()];
-    const date = toBn(now.getDate());
-    const month = months[now.getMonth()];
-    const year = toBn(now.getFullYear());
-    return `${day}, ${date} ${month}, ${year}`;
+    return new Date().toLocaleDateString("bn-BD", {
+        dateStyle: "full",
+    });
 };
 
+console.log(getBengaliDate());
 const Navbar = () => {
     const { data: session } = useSession();
     const pathname = usePathname();
@@ -79,15 +50,21 @@ const Navbar = () => {
             {/* Top Row: Logo + Auth */}
             <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2">
-                    <div className="bg-green-600 p-2 rounded-lg">
+                <Link
+                    href="/"
+                    aria-label="বাজার দর - হোম পেজ"
+                    className="group inline-flex items-center gap-3 rounded-xl outline-none transition-opacity duration-200 hover:opacity-90 focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-4"
+                >
+                    {/* Logo Icon */}
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-green-500 to-green-700 text-2xl shadow-sm transition-transform duration-200 group-hover:scale-105">
                         <span aria-hidden="true">🛒</span>
                     </div>
-                    <div>
-                        <h1 className="font-bold text-lg text-gray-800 leading-tight">
-                            বাজার দর ?
+                    {/* Brand Information */}
+                    <div className="flex flex-col">
+                        <h1 className="text-lg font-extrabold leading-tight tracking-tight text-gray-900 transition-colors duration-200 group-hover:text-green-700 sm:text-xl">
+                            বাজার দর
                         </h1>
-                        <p className="text-xs text-gray-500 leading-tight">
+                        <p className="mt-1 text-xs font-light leading-tight text-gray-500">
                             {todayDate}
                         </p>
                     </div>
