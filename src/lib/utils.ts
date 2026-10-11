@@ -56,3 +56,12 @@ export function translateUnit(unit: string): string {
     };
     return map[unit] || unit;
 }
+
+export function categoryToUrlSlug(apiCategory: string): string {
+    const map: Record<string, string> = {
+        shobji: "sobji",
+        "dim-murgi": "dim-dui",
+        moshla: "mosla",
+    };
+    return map[apiCategory] || apiCategory;
+}
