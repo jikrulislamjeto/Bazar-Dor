@@ -8,8 +8,11 @@ export function toBengaliNumber(
     return num.toString().replace(/\d/g, (d) => bengaliDigits[parseInt(d)]);
 }
 
-export function formatPrice(price: number): string {
-    const formatted = price.toLocaleString("en-IN");
+export function formatPrice(price: number | undefined | null): string {
+    if (price === undefined || price === null || isNaN(Number(price))) {
+        return "—";
+    }
+    const formatted = Number(price).toLocaleString("en-IN");
     return toBengaliNumber(formatted);
 }
 
@@ -58,10 +61,14 @@ export function translateUnit(unit: string): string {
 }
 
 export function categoryToUrlSlug(apiCategory: string): string {
+    return apiCategory;
+}
+
+export function navSlugToApiFilter(navSlug: string): string {
     const map: Record<string, string> = {
         shobji: "sobji",
         "dim-murgi": "dim-dui",
         moshla: "mosla",
     };
-    return map[apiCategory] || apiCategory;
+    return map[navSlug] || navSlug;
 }
