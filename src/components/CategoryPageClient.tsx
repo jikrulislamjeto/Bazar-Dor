@@ -27,7 +27,6 @@ export default function CategoryPageClient({
     useEffect(() => {
         if (initialProducts.length > 0) return;
         let cancelled = false;
-        setLoading(true);
         getProductsByCategory(apiFilter)
             .then((data) => {
                 if (!cancelled) {

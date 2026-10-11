@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 export default function UpdateProfilePage() {
     const { data: session, isPending } = useSession();
     const router = useRouter();
-    const [name, setName] = useState("");
+    const [name, setName] = useState(() => session?.user?.name ?? "");
     const [updating, setUpdating] = useState(false);
 
     useEffect(() => {
