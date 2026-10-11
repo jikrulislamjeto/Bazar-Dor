@@ -25,10 +25,9 @@ export default function CategoryPageClient({
     const [loading, setLoading] = useState(initialProducts.length === 0);
 
     useEffect(() => {
+        if (initialProducts.length > 0) return;
         let cancelled = false;
-        if (initialProducts.length === 0) {
-            setLoading(true);
-        }
+        setLoading(true);
         getProductsByCategory(apiFilter)
             .then((data) => {
                 if (!cancelled) {
@@ -36,7 +35,7 @@ export default function CategoryPageClient({
                 }
             })
             .catch(() => {
-                if (!cancelled && products.length === 0) {
+                if (!cancelled) {
                     setProducts([]);
                 }
             })
@@ -47,7 +46,7 @@ export default function CategoryPageClient({
         return () => {
             cancelled = true;
         };
-    }, [apiFilter]);
+    }, [apiFilter, initialProducts.length]);
 
     const sortedProducts = useMemo(() => {
         const copy = [...products];
@@ -61,7 +60,7 @@ export default function CategoryPageClient({
     }, [products, sort]);
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="max-w-6xl mx-auto px-4 py-8 min-h-[60vh]">
             {/* Header */}
             <div className="bg-white rounded-xl border border-gray-100 p-5 mb-5 flex items-center gap-4">
                 <span className="text-4xl">{category.icon}</span>

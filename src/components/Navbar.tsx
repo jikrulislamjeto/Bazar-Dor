@@ -77,7 +77,7 @@ const Navbar = () => {
     };
 
     return (
-        <header className="bg-white shadow-sm sticky top-0 z-50">
+        <header className="bg-white shadow-sm sticky top-0 z-50 transform-gpu">
             {/* Top Row: Logo + Auth */}
             <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
                 {/* Logo */}
@@ -190,9 +190,10 @@ const Navbar = () => {
                             <Link
                                 key={cat.slug}
                                 href={`/category/${cat.slug}`}
-                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm whitespace-nowrap transition ${
+                                prefetch={true}
+                                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm whitespace-nowrap transition-colors duration-150 ${
                                     isActive
-                                        ? "bg-green-600 text-white"
+                                        ? "bg-green-600 text-white font-medium"
                                         : "text-gray-600 hover:bg-gray-200"
                                 }`}
                             >
@@ -216,10 +217,11 @@ const Navbar = () => {
                                 <Link
                                     key={cat.slug}
                                     href={`/category/${cat.slug}`}
+                                    prefetch={true}
                                     onClick={() => setMobileOpen(false)}
-                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm ${
+                                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm transition-colors duration-150 ${
                                         isActive
-                                            ? "bg-green-600 text-white"
+                                            ? "bg-green-600 text-white font-medium"
                                             : "bg-gray-100 text-gray-600"
                                     }`}
                                 >
